@@ -33,3 +33,21 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('tenants', 'TenantController');
     Route::post('/tenants/{tenant}/switch', 'TenantController@switch');
 });
+
+// Simple test endpoint
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Laravel API is working on Vercel!',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
+// Health check endpoint
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'healthy',
+        'laravel_version' => app()->version(),
+        'php_version' => PHP_VERSION
+    ]);
+});

@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Simple test route
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Laravel Web Routes are working on Vercel!',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
 Route::group(['middleware' => 'tenancy.enforce'], function () {
     Auth::routes();
 });
