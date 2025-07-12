@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Simple test endpoint
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Laravel API is working on Vercel!',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
+// Health check endpoint
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'healthy',
+        'laravel_version' => app()->version(),
+        'php_version' => PHP_VERSION
+    ]);
+});
